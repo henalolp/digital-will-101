@@ -1,41 +1,83 @@
-# 🎯 Donor Fund Tracking and Management System
+
+# 🏛 Digital Will Management System
 
 ## 📄 Definition
-This system is designed to streamline the process of managing donations for charitable organizations. It provides a comprehensive platform where donor and charity profiles can be created, managed, and tracked efficiently. The system enables charities to run campaigns, accept donations, and generate reports on donation activities. Donors can create profiles, track their donation history, and participate in various charity campaigns.
+This system allows users to create, manage, and execute digital wills. It stores wills, assets, beneficiaries, and executors securely using decentralized technology. The system ensures that wills are executed only by assigned executors and tracks assets and beneficiaries efficiently.
 
 ## 🚀 Features
 
-### 👤 Donor Profile Management
-- 📝 **Create and manage** donor profiles with personal details, contact information, and donation history.
-- ✏️ **Update** existing donor profiles with new information or modify existing data.
-- 🔍 **View** donor profiles by ID or owner, and retrieve all profiles in the system.
-- 🗑️ **Delete** donor profiles when no longer needed.
+### 👤 User Management
+- 📝 **Create and manage** user profiles with personal details and email.
+- ✏️ **Update** existing users with new details.
+- 🔍 **View** users by ID or retrieve all users in the system.
 
-### 🏢 Charity Profile Management
-- 📝 **Create and manage** charity profiles with essential information such as mission statements, contact details, and donation records.
-- ✏️ **Update** existing charity profiles and track the total amount received by the charity.
-- 🔍 **Retrieve** charity profiles by ID or owner, and list all charity profiles within the system.
-- 🗑️ **Delete** charity profiles if required.
+### 🏛 Will Management
+- 📝 **Create and manage** wills by assigning executors and adding assets and beneficiaries.
+- ✏️ **Update** wills with new assets and beneficiaries.
+- ❌ **Mark wills as executed** when the conditions of the will are met.
+- 🔍 **View** wills by ID and retrieve all wills in the system.
 
-### 🎁 Campaign Management
-- 📝 **Create and manage** fundraising campaigns, including setting target amounts, descriptions, and associated charities.
-- ✏️ **Update** campaign details and track contributions from donors.
-- 🔍 **View** campaign details by ID and retrieve all campaigns in the system.
-- 🗑️ **Delete** campaigns that are no longer active or necessary.
+### 🏗️ Asset Management
+- 📝 **Add assets** to a will with descriptions and values.
+- ✏️ **Update asset information** such as asset name and value.
+- 🔍 **View all assets** associated with a specific will.
 
-### 💰 Donation Management
-- 💳 **Reserve donations** with validation to ensure that all required fields are provided and donors, charities, and campaigns exist.
-- ✅ **Complete** reserved donations by verifying payments and updating donation records.
-- 🔍 **View** all donations, as well as donations specific to a donor or charity.
+### 👥 Beneficiary Management
+- 📝 **Add beneficiaries** to a will, specifying the share of assets.
+- ✏️ **Update beneficiary information** such as the share percentage.
+- 🔍 **View all beneficiaries** of a specific will.
 
-### 📊 Donation Report Management
-- 📝 **Create** detailed donation reports, including information on donors, charities, campaigns, and the status of donations.
-- 🔍 **Retrieve** all donation reports to provide comprehensive insights into donation activities.
+### 🧑‍⚖️ Executor Management
+- 📝 **Create executors** with contact details to manage wills.
+- ✏️ **Update executor contact information** when needed.
+- 🔍 **View executors** assigned to a specific will and retrieve all executors.
 
-### 🏅 Campaign Status Tracking
-- ⏳ **Track** the status of campaigns, including pending, accepted, completed, and cancelled campaigns.
-- 🏁 **Mark campaigns as completed** when fundraising goals are achieved or the campaign period ends.
-- 🔍 **Retrieve** all accepted or completed campaigns for monitoring and analysis.
+### 📝 Assign Executors
+- 🔑 **Assign an executor** to a will ensuring that only authorized individuals can manage and execute the will.
+
+## 💻 Sample Payloads
+
+### User Payload
+```json
+{
+  "name": "Jane Doe",
+  "email": "janedoe@example.com"
+}
+```
+
+### Will Payload
+```json
+{
+  "userId": "user123",
+  "executorId": "executor123"
+}
+```
+
+### Asset Payload
+```json
+{
+  "willId": "will123",
+  "name": "Property",
+  "value": 100000
+}
+```
+
+### Beneficiary Payload
+```json
+{
+  "willId": "will123",
+  "name": "John Doe",
+  "share": 50
+}
+```
+
+### Executor Payload
+```json
+{
+  "name": "Executor Name",
+  "contact": "executor@example.com"
+}
+```
 
 
 
