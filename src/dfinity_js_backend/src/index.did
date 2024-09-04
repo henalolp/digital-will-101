@@ -1,0 +1,14 @@
+service: () -> {
+    addAsset: (record {value:nat64; name:text; willId:text}) -> (variant {Ok; Err:text});
+    addBeneficiary: (record {name:text; willId:text; share:nat64}) -> (variant {Ok; Err:text});
+    assignExecutor: (record {executorId:text; willId:text}) -> (variant {Ok; Err:text});
+    createExecutor: (record {contact:text; name:text}) -> (variant {Ok:record {id:text; contact:text; name:text; createdAt:nat64}; Err:text});
+    createUser: (record {name:text; email:text}) -> (variant {Ok:record {id:text; name:text; createdAt:nat64; email:text}; Err:text});
+    createWill: (record {executorId:text; userId:text}) -> (variant {Ok:record {id:text; isExecuted:bool; executorId:text; userId:text; createdAt:nat64; assets:vec record {id:text; value:nat64; name:text; createdAt:nat64; willId:text}; beneficiaries:vec record {id:text; name:text; createdAt:nat64; willId:text; share:nat64}}; Err:text});
+    getAllExecutors: () -> (variant {Ok:vec record {id:text; contact:text; name:text; createdAt:nat64}; Err:text}) query;
+    getAllUsers: () -> (variant {Ok:vec record {id:text; name:text; createdAt:nat64; email:text}; Err:text}) query;
+    getAllWills: () -> (variant {Ok:vec record {id:text; isExecuted:bool; executorId:text; userId:text; createdAt:nat64; assets:vec record {id:text; value:nat64; name:text; createdAt:nat64; willId:text}; beneficiaries:vec record {id:text; name:text; createdAt:nat64; willId:text; share:nat64}}; Err:text}) query;
+    getExecutor: (text) -> (variant {Ok:record {id:text; contact:text; name:text; createdAt:nat64}; Err:text}) query;
+    getUser: (text) -> (variant {Ok:record {id:text; name:text; createdAt:nat64; email:text}; Err:text}) query;
+    getWill: (text) -> (variant {Ok:record {id:text; isExecuted:bool; executorId:text; userId:text; createdAt:nat64; assets:vec record {id:text; value:nat64; name:text; createdAt:nat64; willId:text}; beneficiaries:vec record {id:text; name:text; createdAt:nat64; willId:text; share:nat64}}; Err:text}) query;
+}
