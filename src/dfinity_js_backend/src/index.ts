@@ -178,6 +178,10 @@ export default Canister({
 
   // Add an asset to a will
   addAsset: update([AssetPayload], Result(Null, text), (payload) => {
+    if (!payload.name || payload.value <= 0) {
+      return Err("Name and a valid value are required.");
+    }
+
     const willOpt = willsStorage.get(payload.willId);
     if ("None" in willOpt) {
       return Err("Will not found.");
@@ -195,6 +199,7 @@ export default Canister({
     };
 
     will.assets.push(asset);
+    // Update the will directly in the storage
     willsStorage.insert(payload.willId, will);
     assetsStorage.insert(assetId, asset);
     return Ok(null);
@@ -205,6 +210,10 @@ export default Canister({
     [BeneficiaryPayload],
     Result(Null, text),
     (payload) => {
+      if (!payload.name || payload.share <= 0) {
+        return Err("Name and a valid share are required.");
+      }
+
       const willOpt = willsStorage.get(payload.willId);
       if ("None" in willOpt) {
         return Err("Will not found.");
@@ -222,6 +231,7 @@ export default Canister({
       };
 
       will.beneficiaries.push(beneficiary);
+      // Update the will directly in the storage
       willsStorage.insert(payload.willId, will);
       beneficiariesStorage.insert(beneficiaryId, beneficiary);
       return Ok(null);
@@ -243,6 +253,11 @@ export default Canister({
       const executorOpt = executorsStorage.get(payload.executorId);
       if ("None" in executorOpt) {
         return Err("Executor not found.");
+      }
+
+      // Security check to ensure only the user who owns the will can assign an executor
+      if (will.userId !== payload.userId) {
+        return Err("Unauthorized: You cannot modify this will.");
       }
 
       will.executorId = payload.executorId;
